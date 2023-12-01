@@ -9,12 +9,12 @@
     <lastBuildDate>Fri, 01 Dec 2023 00:05:46 -0800</lastBuildDate>
     <atom:link href="https://debproject.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
+      <title>My markdown document</title>
       <link>https://debproject.github.io/posts/mypost/</link>
       <pubDate>Fri, 01 Dec 2023 00:05:46 -0800</pubDate>
       <guid>https://debproject.github.io/posts/mypost/</guid>
-      <description>&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;test.png&#34; alt=&#34;test&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;text below the pictures&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
