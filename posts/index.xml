@@ -16,7 +16,7 @@
       <description>&lt;p&gt;text=&amp;lsquo;hello&amp;rsquo;
 wow&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;test.png&#34; alt=&#34;test&#34;&gt;
-\ntext below the pictures&lt;/p&gt;</description>
+text below the pictures&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
