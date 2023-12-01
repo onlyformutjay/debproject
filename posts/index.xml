@@ -13,8 +13,9 @@
       <link>https://debproject.github.io/posts/mypost/</link>
       <pubDate>Fri, 01 Dec 2023 00:05:46 -0800</pubDate>
       <guid>https://debproject.github.io/posts/mypost/</guid>
-      <description>And so, the project begins:
-text below the pictures</description>
+      <description>&lt;p&gt;And so, the project begins:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;test2.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;text below the pictures&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
