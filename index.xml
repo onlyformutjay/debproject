@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Learning Virtualization: Debian Project</title>
+    <title>Learning Virtualization: A Debian Project</title>
     <link>https://debproject.github.io/</link>
-    <description>Recent content on Learning Virtualization: Debian Project</description>
+    <description>Recent content on Learning Virtualization: A Debian Project</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Dec 2023 00:05:46 -0800</lastBuildDate>
