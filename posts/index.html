@@ -50,7 +50,60 @@ A new Ubuntu virtual machine of course.</p>
 </span></span><span style="display:flex;"><span>	Timezone  
 </span></span><span style="display:flex;"><span>	Name and Password:
 </span></span></code></pre></div><p><img src="https://i.imgur.com/xTJ3Inf.png" alt=""></p>
-<p>Okay.</p>
+<p>Beautiful, now my next step is to install another Virtual Machine.<br>
+This time I want to use KVM&rsquo;s virt-manager ulility in combination with Debian 12.</p>
+<p><strong>Debian 12 Virtual Machine Process</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	First things first: I need an Debian Iso.
+</span></span><span style="display:flex;"><span>	  For this: Navigate to https://www.debian.org/download and download the latest version.
+</span></span><span style="display:flex;"><span>	Whilst that is downloading, it is time to setup the virt-manager and assosiated components.
+</span></span><span style="display:flex;"><span>		Steps:
+</span></span><span style="display:flex;"><span>			Navigate to a terminal on Ubuntu machine. (Need to execute following commands as sudo)
+</span></span><span style="display:flex;"><span>				sudo apt install -y qemu-kvm libvirt-clients virt-manager
+</span></span><span style="display:flex;"><span>					-completed, no errors.
+</span></span><span style="display:flex;"><span>				sudo apt install -y libvirt-daemon-system bridge-utils virtinst libvirt-daemon
+</span></span><span style="display:flex;"><span>					-completed, no errors.
+</span></span><span style="display:flex;"><span>				sudo apt install -y qemu qemu-kvm qemu-system qemu-utils
+</span></span><span style="display:flex;"><span>					-completed, no errors.
+</span></span><span style="display:flex;"><span>				sudo usermod -aG libvirt name (replace name with your user)
+</span></span><span style="display:flex;"><span>					-completed, no errors.
+</span></span><span style="display:flex;"><span>				sudo usermod -aG libvirt-qemu deb
+</span></span><span style="display:flex;"><span>					-completed, no errors.
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>			If done correctly, you should be able to now open Virt-Manager
+</span></span><span style="display:flex;"><span>			Furthermore if you check &#34;cat /etc/group&#34; you should see your user under the newly listed groups.
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>			I will now reboot to make sure the daemon is running.
+</span></span><span style="display:flex;"><span>				sudo reboot
+</span></span><span style="display:flex;"><span>					-completed, no errors.
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>			Continuing:
+</span></span><span style="display:flex;"><span>				Open Virt-Manager
+</span></span><span style="display:flex;"><span>				Since we downloaded the debian iso, we will proceed with the local install.
+</span></span><span style="display:flex;"><span>				Choose ISO: Locate the iso you downloaded and click Forward.
+</span></span><span style="display:flex;"><span>				I will choose to allocate 2 kibibytes to this Debian machine of memory and use two CPUs.
+</span></span><span style="display:flex;"><span>				I will choose to allocate 30.0 GB of disk for this machine. (Lower provided me with installation failed, multiple times).
+</span></span><span style="display:flex;"><span>				Finish
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>				Debian GNU/Linux installer menu (BIOS mode)
+</span></span><span style="display:flex;"><span>				Install (I did not use the GUI option)
+</span></span><span style="display:flex;"><span>				Language: English
+</span></span><span style="display:flex;"><span>				Country: United States
+</span></span><span style="display:flex;"><span>				Keymap: American English
+</span></span><span style="display:flex;"><span>				Hostname: deb
+</span></span><span style="display:flex;"><span>				Domain: N/A
+</span></span><span style="display:flex;"><span>				Pass for root:
+</span></span><span style="display:flex;"><span>				Full name for user: debexample
+</span></span><span style="display:flex;"><span>				Username: deb
+</span></span><span style="display:flex;"><span>				Password: 
+</span></span><span style="display:flex;"><span>				Time Zone: Pacific
+</span></span><span style="display:flex;"><span>				Partitioning Method: Guided- use entire disk and setup LVM
+</span></span><span style="display:flex;"><span>				Select Disk:
+</span></span><span style="display:flex;"><span>				Scheme: All files in one partition
+</span></span><span style="display:flex;"><span>				Write Changes? Yes
+</span></span><span style="display:flex;"><span>				Amount of volume group to use: 20.0 GB
+</span></span><span style="display:flex;"><span>				Write changes to disks? Yes
+</span></span><span style="display:flex;"><span>					
+</span></span></code></pre></div>
         
     </div>
     
