@@ -174,8 +174,8 @@ Now lets try and add 2 small disks to the debian virtual machine.</p>
 </span></span><span style="display:flex;"><span>				Enter to save file name.
 </span></span><span style="display:flex;"><span>		Perfect! Now we can test our mounting by typing &#34;sudo mount -a&#34; (to mount all partitions)
 </span></span><span style="display:flex;"><span>		Upon success, we can now deem that this new change will be persistent across reboots.
-</span></span></code></pre></div><p><strong>Adding New Users</strong><br>
-This system needs to feel more complete, so let&rsquo;s add a couple of users.</p>
+</span></span></code></pre></div><p>This system needs to feel more complete so let&rsquo;s add a couple of users.<br>
+<strong>Adding New Users</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
 </span></span><span style="display:flex;"><span>		From the terminal type &#34;sudo useradd nameDesired&#34;
 </span></span><span style="display:flex;"><span>			I will do this two times, once for a user named noah, and once for a user named tux.
@@ -185,9 +185,43 @@ This system needs to feel more complete, so let&rsquo;s add a couple of users.</
 </span></span></code></pre></div><p><img src="https://i.imgur.com/8GDo7w1.png" alt=""><br>
 Okay we have new users, what&rsquo;s next?<br>
 I&rsquo;ve noticed one thing, a virtual machine inside of another virtual machine tends to feel latency.<br>
-Let&rsquo;s work from the terminal inside of our debian machine using the serial console.</p>
-<p><strong>Setting up the Serial Console</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"></code></pre></div>
+Let&rsquo;s work from the terminal inside of our debian machine using the serial console.<br>
+To prevent our system from using unnecessary resources.<br>
+<strong>Setting up the Serial Console</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
+</span></span><span style="display:flex;"><span>		Alright, this task may seem intimidating, but it&#39;s not. Let&#39;s step through this together.
+</span></span><span style="display:flex;"><span>		First, we&#39;re going to open the grub config file.
+</span></span><span style="display:flex;"><span>			sudo nano /etc/default/grub
+</span></span><span style="display:flex;"><span>		Find GRUB_CMDLINE_LINUX=&#34;&#34;
+</span></span><span style="display:flex;"><span>			In between the parentheses pair, we&#39;re going to add the line &#34;console=ttys0,115200&#34; which tells the kernel to use ttys0 at the default rate.
+</span></span><span style="display:flex;"><span>		Press ctrl+x
+</span></span><span style="display:flex;"><span>		Save Modified Buffer? Yes
+</span></span><span style="display:flex;"><span>		Press enter to save file name.
+</span></span><span style="display:flex;"><span>		Now, let&#39;s update our GRUB.
+</span></span><span style="display:flex;"><span>			sudo update-grub
+</span></span><span style="display:flex;"><span>		Now we need to enable the Serial Console Service:
+</span></span><span style="display:flex;"><span>			sudo nano /etc/systemd/system/serial-console.service
+</span></span><span style="display:flex;"><span>		When the newly &#39;touch&#39;ed document is open we&#39;re going to add the following few lines of code:
+</span></span><span style="display:flex;"><span>			[Unit]
+</span></span><span style="display:flex;"><span>			Description=Serial Console
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			[Service]
+</span></span><span style="display:flex;"><span>			ExecStart=-/sbin/agetty -L ttyS0 vt100
+</span></span><span style="display:flex;"><span>			Restart=always
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			[Install]
+</span></span><span style="display:flex;"><span>			WantedBy=multi-user.target
+</span></span><span style="display:flex;"><span>		Press Ctrl+X
+</span></span><span style="display:flex;"><span>		Yes to save modified buffer.
+</span></span><span style="display:flex;"><span>		Enter to save file name.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		Now we need to enable our newly created service.
+</span></span><span style="display:flex;"><span>			Do this by typing &#34;sudo systemctl enable serial-console.service&#34;
+</span></span><span style="display:flex;"><span>		Then we need to additionally start our service
+</span></span><span style="display:flex;"><span>			We can perform this by typing &#34;sudo systemctl start serial-console.service&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		Then all we need to do is reboot to apply and confirm the changes!
+</span></span></code></pre></div><p>This site was made using <em>Hugo</em>&rsquo;s static site generator. Theme = Hugo-Rocinante.</p>
         
     </div>
     
