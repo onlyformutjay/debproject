@@ -32,7 +32,7 @@ A new Ubuntu virtual machine of course.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xTJ3Inf.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Beautiful, now my next step is to install another Virtual Machine.&lt;br&gt;
 This time I want to use KVM&amp;rsquo;s virt-manager ulility in combination with Debian 12.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Debian 12 Virtual Machine Process&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Debian 12 Virtual Machine Installation Process&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	First things first: I need an Debian Iso.
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	  For this: Navigate to https://www.debian.org/download and download the latest version.
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Whilst that is downloading, it is time to setup the virt-manager and assosiated components.
@@ -103,7 +103,22 @@ This time I want to use KVM&amp;rsquo;s virt-manager ulility in combination with
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Install GRUB boot loader: Yes
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Location: /dev/vda
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Installation Complete: Continue									
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/x51Ify2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;And just like that, we&amp;rsquo;ve done it. We&amp;rsquo;re not inside of our debian virtual machine.&lt;br&gt;
+Whats the next step? I think we ought&amp;rsquo; to connect from our Ubuntu machine to our debian machine using the terminal.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Connecting to our Debian machine via our terminal&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Steps:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		In the debian machine at the terminal type &amp;#34;ip a&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Look for something like inet 192.168.122.88/24 located near the bottom of the displayed output
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		From the ubuntu machine we&amp;#39;re going to type ssh name@your_ip (replace the name with your username for your machine, and your_ip with the address you found in the displayed output)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Then you will be prompted for that user&amp;#39;s password.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/N1sVtoA.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As we can see from the arrows in the terminal, we now have access to our debian virtual machine from our ubuntu terminal.&lt;br&gt;
+Indicating success.&lt;/p&gt;
+&lt;p&gt;Now lets try and add 2 small disks to the debian virtual machine.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Creating Logical Volumes and mounting them using their UUID&amp;rsquo;s&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>
