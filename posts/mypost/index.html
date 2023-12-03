@@ -217,7 +217,7 @@ I can already notice the increase in performance when using the console this way
 <p>I have noticed one problem that I&rsquo;d like to address though.<br>
 When I am trying to use sudo on my deb user, I struggle because deb is not in the sudo users list.<br>
 Ultimately having to switch to the root user to do the majority of the changes which could prove inconvenient.<br>
-Let&rsquo;s fix that together.
+Let&rsquo;s fix that together.<br>
 <strong>Setting Up A Sudo User</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
 </span></span><span style="display:flex;"><span>		This is relatively simple as well.
@@ -227,7 +227,30 @@ Let&rsquo;s fix that together.
 </span></span></code></pre></div><p><img src="https://i.imgur.com/U7HpbFW.png" alt="">
 Awesome, now that&rsquo;s proved quite convenient because now I don&rsquo;t have to be the root user to just list my vgs, change another users group, etc.<br>
 What&rsquo;s next though? Is this the end?<br>
-Not quite. Let&rsquo;s do one more thing. Just for funzies.</p>
+Not quite. Let&rsquo;s do one more thing. Just for funzies.<br>
+<strong>Adding the webserver, and changing the default home page :)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
+</span></span><span style="display:flex;"><span>		Alright first things first, we need to make sure webserver is added.
+</span></span><span style="display:flex;"><span>			You can do this by typing &#34;tasksel&#34; at the terminal, and ensuring that webserver is checked near the bottom.
+</span></span><span style="display:flex;"><span>		Alright, awesome; that&#39;s sorted.
+</span></span><span style="display:flex;"><span>		Let&#39;s adjust the home page and call this project a wrap.
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		So the file you need to inquire is located in the /var/www/html/ directory
+</span></span><span style="display:flex;"><span>		It is titled index.html
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		I began by typing &#34;nano /var/www/html/index.html
+</span></span><span style="display:flex;"><span>			I then ctrl+k the whole document to clear it out.
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		Then all you need to do is write your required code for a basic barebones-html project. We just want to alter it&#39;s appearance from the default apache2 webpage.
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		Lastly, we will ctrl+x to exit our document.
+</span></span><span style="display:flex;"><span>		Yes to save changes.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		We will then &#34;sudo systemctl restart apache2&#34; to check for changes.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		Finally, open the web application you have locally installed. Type into the url bar &#34;http://localhost&#34;
+</span></span><span style="display:flex;"><span>		What do you see? Well done, friend.
+</span></span></code></pre></div><p><img src="https://i.imgur.com/dNVEuU3.png" alt=""></p>
 <p>This site was made using <em>Hugo</em>&rsquo;s static site generator. Theme = Hugo-Rocinante.</p>
         </article>
         

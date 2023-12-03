@@ -205,7 +205,7 @@ I can already notice the increase in performance when using the console this way
 &lt;p&gt;I have noticed one problem that I&amp;rsquo;d like to address though.&lt;br&gt;
 When I am trying to use sudo on my deb user, I struggle because deb is not in the sudo users list.&lt;br&gt;
 Ultimately having to switch to the root user to do the majority of the changes which could prove inconvenient.&lt;br&gt;
-Let&amp;rsquo;s fix that together.
+Let&amp;rsquo;s fix that together.&lt;br&gt;
 &lt;strong&gt;Setting Up A Sudo User&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Steps:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		This is relatively simple as well.
@@ -215,7 +215,30 @@ Let&amp;rsquo;s fix that together.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/U7HpbFW.png&#34; alt=&#34;&#34;&gt;
 Awesome, now that&amp;rsquo;s proved quite convenient because now I don&amp;rsquo;t have to be the root user to just list my vgs, change another users group, etc.&lt;br&gt;
 What&amp;rsquo;s next though? Is this the end?&lt;br&gt;
-Not quite. Let&amp;rsquo;s do one more thing. Just for funzies.&lt;/p&gt;
+Not quite. Let&amp;rsquo;s do one more thing. Just for funzies.&lt;br&gt;
+&lt;strong&gt;Adding the webserver, and changing the default home page :)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Steps:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Alright first things first, we need to make sure webserver is added.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			You can do this by typing &amp;#34;tasksel&amp;#34; at the terminal, and ensuring that webserver is checked near the bottom.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Alright, awesome; that&amp;#39;s sorted.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Let&amp;#39;s adjust the home page and call this project a wrap.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		So the file you need to inquire is located in the /var/www/html/ directory
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		It is titled index.html
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		I began by typing &amp;#34;nano /var/www/html/index.html
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			I then ctrl+k the whole document to clear it out.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Then all you need to do is write your required code for a basic barebones-html project. We just want to alter it&amp;#39;s appearance from the default apache2 webpage.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Lastly, we will ctrl+x to exit our document.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Yes to save changes.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		We will then &amp;#34;sudo systemctl restart apache2&amp;#34; to check for changes.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Finally, open the web application you have locally installed. Type into the url bar &amp;#34;http://localhost&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		What do you see? Well done, friend.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/dNVEuU3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This site was made using &lt;em&gt;Hugo&lt;/em&gt;&amp;rsquo;s static site generator. Theme = Hugo-Rocinante.&lt;/p&gt;</description>
     </item>
   </channel>
