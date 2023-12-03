@@ -219,7 +219,24 @@ To prevent our system from using unnecessary resources.<br>
 </span></span><span style="display:flex;"><span>			We can perform this by typing &#34;sudo systemctl start serial-console.service&#34;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		Then all we need to do is reboot to apply and confirm the changes!
-</span></span></code></pre></div><p>This site was made using <em>Hugo</em>&rsquo;s static site generator. Theme = Hugo-Rocinante.</p>
+</span></span></code></pre></div><p><img src="https://i.imgur.com/G4Zjzbu.png" alt=""><br>
+Just like that, we&rsquo;ve got access to our serial console.<br>
+I can already notice the increase in performance when using the console this way.</p>
+<p>I have noticed one problem that I&rsquo;d like to address though.<br>
+When I am trying to use sudo on my deb user, I struggle because deb is not in the sudo users list.<br>
+Ultimately having to switch to the root user to do the majority of the changes which could prove inconvenient.<br>
+Let&rsquo;s fix that together.
+<strong>Setting Up A Sudo User</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
+</span></span><span style="display:flex;"><span>		This is relatively simple as well.
+</span></span><span style="display:flex;"><span>		First things first, we&#39;re going to open a terminal.
+</span></span><span style="display:flex;"><span>			Then we&#39;re going to type &#34;sudo usermod -aG sudo your_account_name (replace your_account_name with your personal name) in by case I will use &#39;deb&#39;.
+</span></span><span style="display:flex;"><span>		Upon typing &#34;cat /etc/group&#34; you should see the requested user now with sudo access, which will be persistent across reboots.
+</span></span></code></pre></div><p><img src="https://i.imgur.com/U7HpbFW.png" alt="">
+Awesome, now that&rsquo;s proved quite convenient because now I don&rsquo;t have to be the root user to just list my vgs, change another users group, etc.<br>
+What&rsquo;s next though? Is this the end?<br>
+Not quite. Let&rsquo;s do one more thing. Just for funzies.</p>
+<p>This site was made using <em>Hugo</em>&rsquo;s static site generator. Theme = Hugo-Rocinante.</p>
         
     </div>
     
