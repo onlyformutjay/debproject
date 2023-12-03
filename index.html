@@ -173,8 +173,21 @@ Now lets try and add 2 small disks to the debian virtual machine.</p>
 </span></span><span style="display:flex;"><span>				Yes to save modified buffer.
 </span></span><span style="display:flex;"><span>				Enter to save file name.
 </span></span><span style="display:flex;"><span>		Perfect! Now we can test our mounting by typing &#34;sudo mount -a&#34; (to mount all partitions)
-</span></span><span style="display:flex;"><span>		Upon success, we can now deem that this will be persistent across reboots.
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>		Upon success, we can now deem that this new change will be persistent across reboots.
+</span></span></code></pre></div><p><strong>Adding New Users</strong><br>
+This system needs to feel more complete, so let&rsquo;s add a couple of users.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
+</span></span><span style="display:flex;"><span>		From the terminal type &#34;sudo useradd nameDesired&#34;
+</span></span><span style="display:flex;"><span>			I will do this two times, once for a user named noah, and once for a user named tux.
+</span></span><span style="display:flex;"><span>		In order to see the newly created users:
+</span></span><span style="display:flex;"><span>			Type: &#34;cat /etc/passwd&#34;
+</span></span><span style="display:flex;"><span>		They should be listed towards the bottom.
+</span></span></code></pre></div><p><img src="https://i.imgur.com/8GDo7w1.png" alt=""><br>
+Okay we have new users, what&rsquo;s next?<br>
+I&rsquo;ve noticed one thing, a virtual machine inside of another virtual machine tends to feel latency.<br>
+Let&rsquo;s work from the terminal inside of our debian machine using the serial console.</p>
+<p><strong>Setting up the Serial Console</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"></code></pre></div>
         
     </div>
     
