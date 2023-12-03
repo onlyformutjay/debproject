@@ -116,8 +116,8 @@ This time I want to use KVM&rsquo;s virt-manager ulility in combination with Deb
 </span></span><span style="display:flex;"><span>				Location: /dev/vda
 </span></span><span style="display:flex;"><span>				Installation Complete: Continue									
 </span></span></code></pre></div><p><img src="https://i.imgur.com/x51Ify2.png" alt=""></p>
-<p>And just like that, we&rsquo;ve done it. We&rsquo;re not inside of our debian virtual machine.<br>
-Whats the next step? I think we ought&rsquo; to connect from our Ubuntu machine to our debian machine using the terminal.</p>
+<p>And just like that, we&rsquo;ve done it. We&rsquo;ve successfully created our new debian virtual machine.<br>
+Whats the next step? I think we ought&rsquo; to connect from our Ubuntu machine to our debian machine via the terminal.</p>
 <p><strong>Connecting to our Debian machine via our terminal</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
 </span></span><span style="display:flex;"><span>		In the debian machine at the terminal type &#34;ip a&#34;
@@ -127,10 +127,44 @@ Whats the next step? I think we ought&rsquo; to connect from our Ubuntu machine 
 </span></span><span style="display:flex;"><span>		Then you will be prompted for that user&#39;s password.
 </span></span></code></pre></div><p><img src="https://i.imgur.com/N1sVtoA.png" alt=""></p>
 <p>As we can see from the arrows in the terminal, we now have access to our debian virtual machine from our ubuntu terminal.<br>
-Indicating success.</p>
-<p>Now lets try and add 2 small disks to the debian virtual machine.</p>
+Indicating success.<br>
+Now lets try and add 2 small disks to the debian virtual machine.</p>
 <p><strong>Creating Logical Volumes and mounting them using their UUID&rsquo;s</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Steps:
+</span></span><span style="display:flex;"><span>		To do this we need to navigate to the settings of our debian virtual machine by clicking the blue i with the circle around it inside QEMU/KVM.
+</span></span><span style="display:flex;"><span>		From there, you need to find &#34;VirtIO Disk1&#34; and right click it and select &#34;Add Hardware&#34;
+</span></span><span style="display:flex;"><span>			Once done, we&#39;re going to be adding a new &#34;Storage&#34; device.
+</span></span><span style="display:flex;"><span>			Allocate however much GiB you wish, I will choose 5.
+</span></span><span style="display:flex;"><span>			Press Finish.
+</span></span><span style="display:flex;"><span>		Repeat this process once more, for a another virtual disk. (This step is necessary in order to properly create partitions). Once done, go ahead and go back to the terminal of your debian machine.
+</span></span><span style="display:flex;"><span>		Confirm these changes by typing &#34;lsblk&#34; at the terminal and locating your new &#34;vdb&#34; and &#34;vdc&#34; drives.
+</span></span></code></pre></div><p><img src="https://i.imgur.com/cH35OMO.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Continuing:
+</span></span><span style="display:flex;"><span>		With those changes confirmed, the next step is to created physical volumes for these two new virtual disks.
+</span></span><span style="display:flex;"><span>			We will be able to do that by typing &#34;sudo pvcreate /dev/vdb /dev/vdc&#34;
+</span></span><span style="display:flex;"><span>		With our new PV&#39;s. We now need to create a volume group and assign the newly created physical volumes to it.
+</span></span><span style="display:flex;"><span>			I will do that by typing &#34;sudo vgcreate newVolume /dev/vdb /dev/vdc&#34;
+</span></span><span style="display:flex;"><span>		Moreover, it is time to now create the logical volume.
+</span></span><span style="display:flex;"><span>			Hence, I will do that by typing &#34;sudo lvcreate -n logicalVolume -L 8G newVolume&#34;
+</span></span><span style="display:flex;"><span>		Now we need to format our logical volume.
+</span></span><span style="display:flex;"><span>			To do this type &#34;sudo mkfs.ext4 /dev/newVolume/logicalVolume&#34; (make file system using extension 4 which is highly suitable for our needs since it&#39;s very compatible.)
+</span></span><span style="display:flex;"><span>		Now we want to create a mount point
+</span></span><span style="display:flex;"><span>			We can express this in the terminal by typing &#34;sudo mkdir /mnt/new_mount_point&#34;
+</span></span><span style="display:flex;"><span>		We can now mount our logical volume to this directory.
+</span></span><span style="display:flex;"><span>			&#34;sudo mount /dev/newVolume/logicalVolume /mnt/new_mount_point&#34;
+</span></span><span style="display:flex;"><span>		Awesome! Now we just want to update our fstab to make sure we dont lose our changes on reboot.
+</span></span><span style="display:flex;"><span>			We can do this by:
+</span></span><span style="display:flex;"><span>				Copying our blkid &#34;sudo blkid&#34; of our /dev/mapper/newVolume-logicalVolume:
+</span></span><span style="display:flex;"><span>				Now we need to update our fstab &#34;sudo nano /etc/fstab&#34;
+</span></span><span style="display:flex;"><span>				At the bottom add a new line and type UUID=your_UUID followed my /mnt/your_mount_point ext4 defaults 0 2
+</span></span></code></pre></div><p><img src="https://i.imgur.com/TINqjQM.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>	Continuing: 
+</span></span><span style="display:flex;"><span>				Press ctrl+x
+</span></span><span style="display:flex;"><span>				Yes to save modified buffer.
+</span></span><span style="display:flex;"><span>				Enter to save file name.
+</span></span><span style="display:flex;"><span>		Perfect! Now we can test our mounting by typing &#34;sudo mount -a&#34; (to mount all partitions)
+</span></span><span style="display:flex;"><span>		Upon success, we can now deem that this will be persistent across reboots.
+</span></span></code></pre></div>
         </article>
         
     </article>

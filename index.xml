@@ -104,8 +104,8 @@ This time I want to use KVM&amp;rsquo;s virt-manager ulility in combination with
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Location: /dev/vda
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Installation Complete: Continue									
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/x51Ify2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;And just like that, we&amp;rsquo;ve done it. We&amp;rsquo;re not inside of our debian virtual machine.&lt;br&gt;
-Whats the next step? I think we ought&amp;rsquo; to connect from our Ubuntu machine to our debian machine using the terminal.&lt;/p&gt;
+&lt;p&gt;And just like that, we&amp;rsquo;ve done it. We&amp;rsquo;ve successfully created our new debian virtual machine.&lt;br&gt;
+Whats the next step? I think we ought&amp;rsquo; to connect from our Ubuntu machine to our debian machine via the terminal.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Connecting to our Debian machine via our terminal&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Steps:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		In the debian machine at the terminal type &amp;#34;ip a&amp;#34;
@@ -115,10 +115,44 @@ Whats the next step? I think we ought&amp;rsquo; to connect from our Ubuntu mach
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Then you will be prompted for that user&amp;#39;s password.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/N1sVtoA.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;As we can see from the arrows in the terminal, we now have access to our debian virtual machine from our ubuntu terminal.&lt;br&gt;
-Indicating success.&lt;/p&gt;
-&lt;p&gt;Now lets try and add 2 small disks to the debian virtual machine.&lt;/p&gt;
+Indicating success.&lt;br&gt;
+Now lets try and add 2 small disks to the debian virtual machine.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Creating Logical Volumes and mounting them using their UUID&amp;rsquo;s&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Steps:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		To do this we need to navigate to the settings of our debian virtual machine by clicking the blue i with the circle around it inside QEMU/KVM.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		From there, you need to find &amp;#34;VirtIO Disk1&amp;#34; and right click it and select &amp;#34;Add Hardware&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			Once done, we&amp;#39;re going to be adding a new &amp;#34;Storage&amp;#34; device.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			Allocate however much GiB you wish, I will choose 5.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			Press Finish.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Repeat this process once more, for a another virtual disk. (This step is necessary in order to properly create partitions). Once done, go ahead and go back to the terminal of your debian machine.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Confirm these changes by typing &amp;#34;lsblk&amp;#34; at the terminal and locating your new &amp;#34;vdb&amp;#34; and &amp;#34;vdc&amp;#34; drives.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/cH35OMO.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Continuing:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		With those changes confirmed, the next step is to created physical volumes for these two new virtual disks.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			We will be able to do that by typing &amp;#34;sudo pvcreate /dev/vdb /dev/vdc&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		With our new PV&amp;#39;s. We now need to create a volume group and assign the newly created physical volumes to it.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			I will do that by typing &amp;#34;sudo vgcreate newVolume /dev/vdb /dev/vdc&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Moreover, it is time to now create the logical volume.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			Hence, I will do that by typing &amp;#34;sudo lvcreate -n logicalVolume -L 8G newVolume&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Now we need to format our logical volume.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			To do this type &amp;#34;sudo mkfs.ext4 /dev/newVolume/logicalVolume&amp;#34; (make file system using extension 4 which is highly suitable for our needs since it&amp;#39;s very compatible.)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Now we want to create a mount point
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			We can express this in the terminal by typing &amp;#34;sudo mkdir /mnt/new_mount_point&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		We can now mount our logical volume to this directory.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&amp;#34;sudo mount /dev/newVolume/logicalVolume /mnt/new_mount_point&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Awesome! Now we just want to update our fstab to make sure we dont lose our changes on reboot.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			We can do this by:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Copying our blkid &amp;#34;sudo blkid&amp;#34; of our /dev/mapper/newVolume-logicalVolume:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Now we need to update our fstab &amp;#34;sudo nano /etc/fstab&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				At the bottom add a new line and type UUID=your_UUID followed my /mnt/your_mount_point ext4 defaults 0 2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/TINqjQM.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	Continuing: 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Press ctrl+x
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Yes to save modified buffer.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				Enter to save file name.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Perfect! Now we can test our mounting by typing &amp;#34;sudo mount -a&amp;#34; (to mount all partitions)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		Upon success, we can now deem that this will be persistent across reboots.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>
